@@ -5,6 +5,7 @@ const articleRouter = require("./routes/articles");
 const methodOverride = require("method-override");
 require("dotenv").config();
 const app = express();
+app.use(express.static(__dirname));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/blog");
 

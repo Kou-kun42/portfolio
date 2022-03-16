@@ -44,16 +44,13 @@ exports.signin = (req, res) => {
             expiresIn: 86400, // 24 hours
         });
         req.session.token = token;
-        res.status(200).send({
-            id: user._id,
-            username: user.username,
-        });
+        res.status(200).redirect("/");
     });
 };
 exports.signout = async (req, res) => {
     try {
         req.session = null;
-        return res.status(200).send({ message: "You've been signed out!" });
+        res.redirect("/");
     } catch (err) {
         this.next(err);
     }

@@ -47,11 +47,12 @@ app.use(function (req, res, next) {
 });
 app.get("/", async (req, res) => {
     const articles = await Article.find().sort({ createdAt: "desc" });
-    res.render("articles/index", { articles: articles });
+    const user = req.session.user;
+    res.render("articles/index", { articles: articles, user });
 });
 
 app.use("/articles", articleRouter);
-app.use("/auth", authRouter);
+app.use("", authRouter);
 
 const port = process.env.PORT || 3000;
 

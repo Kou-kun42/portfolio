@@ -8,7 +8,7 @@ router.post("/signup", verifySignUp.checkExistingUser, (req, res) => {
     controller.signup(req, res);
 });
 router.get("/signin", authJwt.verifyToken, (req, res) => {
-    res.render("auth/signin");
+    res.redirect("/");
 });
 router.post("/signin", (req, res) => {
     controller.signin(req, res);

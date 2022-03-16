@@ -39,18 +39,6 @@
         >
             <div class="container">
                 <a class="navbar-brand" href="#page-top">Veer Pandya</a>
-                <button
-                    class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarResponsive"
-                    aria-controls="navbarResponsive"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-0 mx-lg-1">
@@ -67,6 +55,15 @@
                                 >About</a
                             >
                         </li>
+                        <% if (user) { %>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a
+                                class="nav-link py-3 px-0 px-lg-3 rounded"
+                                href="/signout"
+                                >Logout</a
+                            >
+                        </li>
+                        <% } %>
                     </ul>
                 </div>
             </div>
@@ -104,7 +101,9 @@
                 >
                     Projects
                 </h2>
+                <% if (user) { %>
                 <a href="/articles/new" class="btn btn-success">New</a>
+                <% } %>
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon">
@@ -115,15 +114,6 @@
                 <div class="row justify-content-center">
                     <% articles.forEach(article => { %>
                     <div class="col-md-6 col-lg-4 mb-5">
-                        <form
-                            action="/articles/<%= article.id %>?_method=DELETE"
-                            method="POST"
-                            class="d-inline"
-                        >
-                            <button type="submit" class="btn btn-danger">
-                                Delete
-                            </button>
-                        </form>
                         <div
                             class="portfolio-item mx-auto"
                             data-bs-toggle="modal"
@@ -256,6 +246,13 @@
                                     <p class="mb-4">
                                         <%- article.sanitizedHtml %>
                                     </p>
+                                    <% if (user) { %>
+                                    <a
+                                        href="/articles/edit/<%= article.id %>"
+                                        class="btn btn-info"
+                                        >Edit</a
+                                    >
+                                    <% } %>
                                 </div>
                             </div>
                         </div>

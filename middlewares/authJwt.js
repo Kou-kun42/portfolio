@@ -2,16 +2,16 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
 verifyToken = (req, res, next) => {
     let token = req.session.token;
-    if (token) {
+    if (!token) {
+        res.render("auth/signin");
+    } else {
         jwt.verify(token, config.secret, (err, decoded) => {
             if (err) {
                 res.status(401).send({ message: "Unauthorized!" });
+            } else {
+                next();
             }
-            req.userId = decoded.id;
-            res.redirect("/");
         });
-    } else {
-        next();
     }
 };
 const authJwt = {

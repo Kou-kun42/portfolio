@@ -44,6 +44,7 @@ exports.signin = (req, res) => {
             expiresIn: 86400, // 24 hours
         });
         req.session.token = token;
+        req.session.user = true;
         res.status(200).redirect("/");
     });
 };

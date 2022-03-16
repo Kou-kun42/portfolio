@@ -50,6 +50,7 @@ router.post(
 
 router.put(
     "/:id",
+    upload.single("image"),
     async (req, res, next) => {
         req.article = await Article.findById(req.params.id);
         next();
@@ -77,7 +78,13 @@ function saveArticleAndRedirect(mode) {
             article = await article.save();
             res.redirect(`/articles/${article.slug}`);
         } catch (e) {
-            res.render(`articles/${mode}`, { article: article });
+            if (mode == "new") {
+                res.redirect(`/articles/${mode}`);
+            } else if (mode == "edit") {
+                res.redirect(`/articles/${mode}/${article.id}`);
+            } else {
+                res.redirect("/");
+            }
         }
     };
 }

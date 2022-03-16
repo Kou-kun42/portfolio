@@ -5,6 +5,7 @@ const { authJwt } = require("../middlewares");
 const router = express.Router();
 const fs = require("fs");
 const path = require("path");
+const sanitize = require("sanitize-filename");
 
 const CONTENT_TYPES = {
     jpg: "image/jpg",
@@ -17,7 +18,7 @@ const storage = multer.diskStorage({
         cb(null, "uploads");
     },
     filename: (req, file, cb) => {
-        cb(null, file.originalname.split(" ").join("_"));
+        cb(null, sanitize(file.originalname.split(" ").join("_")));
     },
 });
 

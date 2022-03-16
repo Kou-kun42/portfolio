@@ -7,7 +7,7 @@ require("dotenv").config();
 const app = express();
 app.use(express.static(__dirname));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/blog");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://0.0.0.0/portfolio");
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));

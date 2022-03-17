@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Article = require("./models/article");
-const User = require("./models/user");
 const dbConfig = require("./config/db.config");
 const articleRouter = require("./routes/articles");
 const authRouter = require("./routes/auth");

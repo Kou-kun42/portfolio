@@ -6,7 +6,10 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 const sanitize = require("sanitize-filename");
-const article = require("./../models/article");
+const { marked } = require("marked");
+const createDomPurify = require("dompurify");
+const { JSDOM } = require("jsdom");
+const dompurify = createDomPurify(new JSDOM().window);
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -30,8 +33,8 @@ router.get("/edit/:id", authJwt.verifyToken, async (req, res) => {
 
 router.post(
     "/",
-    authJwt.verifyToken,
     upload.single("image"),
+    authJwt.verifyToken,
     async (req, res, next) => {
         req.article = new Article();
         next();
@@ -41,6 +44,7 @@ router.post(
 
 router.put(
     "/:id",
+    upload.single("image"),
     authJwt.verifyToken,
     async (req, res, next) => {
         req.article = await Article.findById(req.params.id);
@@ -65,12 +69,20 @@ function saveArticleAndRedirect(mode) {
     authJwt.verifyToken;
     return async (req, res) => {
         let article = req.article;
-        article.title = req.body.title;
-        article.description = req.body.description;
-        if (mode == "new") {
+        article.title = dompurify.sanitize(req.body.title);
+        if (req.file) {
+            if (mode == "edit") {
+                fs.unlink(article.image.filename, (err) => {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                });
+            }
             article.image.filename = path.join("uploads/" + req.file.filename);
         }
-        article.markdown = req.body.markdown;
+        article.markdown = dompurify.sanitize(req.body.markdown);
+        article.html = marked.parse(article.markdown);
         try {
             article = await article.save();
             res.redirect("/");

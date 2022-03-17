@@ -51,16 +51,6 @@
                     />
                 </div>
                 <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea
-                        name="description"
-                        id="description"
-                        class="form-control"
-                    >
-<%= article.description %></textarea
-                    >
-                </div>
-                <div class="form-group">
                     <label for="image">Image</label>
                     <input
                         required
@@ -68,13 +58,14 @@
                         name="image"
                         id="image"
                         class="form-control"
-                        value="<%= article.image.filename %>"
                     />
                 </div>
                 <div class="form-group">
                     <label for="markdown">Markdown</label>
                     <textarea
                         required
+                        rows="20"
+                        style="height: 100%"
                         name="markdown"
                         id="markdown"
                         class="form-control"

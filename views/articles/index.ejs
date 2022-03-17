@@ -247,9 +247,7 @@
                                         alt="<%= article.title %>"
                                     />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">
-                                        <%- article.sanitizedHtml %>
-                                    </p>
+                                    <p class="mb-4"><%- article.html %></p>
                                     <% if (user) { %>
                                     <a
                                         href="/articles/edit/<%= article.id %>"

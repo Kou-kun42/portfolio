@@ -9,7 +9,7 @@
         <meta name="author" content="Veer Pandya" />
         <title>Veer Pandya's Portfolio</title>
         <!-- Favicon-->
-        <link rel="icon" href="./static/favicon.png" />
+        <link rel="icon" href="/static/favicon.png" />
         <!-- Google fonts-->
         <link
             href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
@@ -29,7 +29,7 @@
             crossorigin="anonymous"
         />
         <!-- Custom Styles -->
-        <link href="./static/styles.css" rel="stylesheet" />
+        <link href="/static/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navbar -->
@@ -73,7 +73,7 @@
                 <!-- Masthead Avatar Image-->
                 <img
                     class="masthead-avatar mb-5 rounded-circle"
-                    src="./static/Veer.jpg"
+                    src="/static/Veer.jpg"
                     alt="Veer"
                 />
                 <!-- Masthead Heading-->
@@ -116,6 +116,7 @@
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div
                             class="portfolio-item mx-auto"
+                            style="width: 20rem; height: auto"
                             data-bs-toggle="modal"
                             data-bs-target="#<%= article.title %>"
                         >
@@ -130,8 +131,7 @@
                             </div>
                             <img
                                 class="img-fluid"
-                                src="data:image/<%=article.image.contentType%>;base64,
-                     <%=article.image.data.toString('base64')%>"
+                                src="<%= article.image.filename %>"
                                 alt="<%= article.title %>"
                             />
                         </div>
@@ -238,8 +238,12 @@
                                     </div>
                                     <!-- Portfolio Modal - Image-->
                                     <img
-                                        src="data:image/<%=article.image.contentType%>;base64,
-                     <%=article.image.data.toString('base64')%>"
+                                        src="<%= article.image.filename %>"
+                                        class="img-fluid"
+                                        style="
+                                            max-height: 20rem;
+                                            border-radius: 0.5rem;
+                                        "
                                         alt="<%= article.title %>"
                                     />
                                     <!-- Portfolio Modal - Text-->
@@ -269,6 +273,6 @@
             crossorigin="anonymous"
         ></script>
         <!-- Custom Scripts-->
-        <script src="./static/scripts.js" ;></script>
+        <script src="/static/scripts.js" ;></script>
     </body>
 </html>

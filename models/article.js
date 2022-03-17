@@ -14,8 +14,7 @@ const articleSchema = new mongoose.Schema({
         type: String,
     },
     image: {
-        data: Buffer,
-        contentType: String,
+        filename: String,
     },
     markdown: {
         type: String,

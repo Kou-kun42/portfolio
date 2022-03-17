@@ -1,3 +1,3 @@
 module.exports = {
-    secret: "SuPer-DupER-SECRET-KeY#123!@#",
+    secret: process.env.AUTH_SECRET || "SuPer-DupER-SECRET-KeY#123!@#",
 };

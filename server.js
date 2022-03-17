@@ -27,7 +27,7 @@ mongoose
     });
 
 var corsOptions = {
-    origin: "http://localhost:3001",
+    origin: process.env.CORS || "http://localhost:3001",
 };
 app.use(cors(corsOptions));
 
@@ -37,7 +37,7 @@ app.use(methodOverride("_method"));
 app.use(
     cookieSession({
         name: "portfolio-session",
-        secret: "COOKIE_SECRET", // should use as secret environment variable
+        secret: process.env.COOKIE || "COOKIE_SECRET",
         httpOnly: true,
     })
 );

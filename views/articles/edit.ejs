@@ -8,7 +8,7 @@
         />
         <title>Edit Project</title>
         <!-- Favicon-->
-        <link rel="icon" href="./static/favicon.png" />
+        <link rel="icon" href="/static/favicon.png" />
         <!-- Google fonts-->
         <link
             href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
@@ -28,7 +28,7 @@
             crossorigin="anonymous"
         />
         <!-- Custom Styles -->
-        <link href="./static/styles.css" rel="stylesheet" />
+        <link href="/static/styles.css" rel="stylesheet" />
     </head>
     <body>
         <div class="container">
@@ -37,9 +37,42 @@
             <form
                 action="/articles/<%= article.id %>?_method=PUT"
                 method="POST"
-                enctype="multipart/form-data"
             >
-                <%- include('_form_fields') %>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input
+                        required
+                        value="<%= article.title %>"
+                        type="text"
+                        name="title"
+                        id="title"
+                        class="form-control"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea
+                        name="description"
+                        id="description"
+                        class="form-control"
+                    >
+<%= article.description %></textarea
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="markdown">Markdown</label>
+                    <textarea
+                        required
+                        name="markdown"
+                        id="markdown"
+                        class="form-control"
+                    >
+<%= article.markdown %></textarea
+                    >
+                </div>
+
+                <a href="/" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
         <div class="container my-4">

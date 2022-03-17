@@ -25,10 +25,7 @@ mongoose
         process.exit();
     });
 
-var corsOptions = {
-    origin: process.env.CORS || "http://localhost:3001",
-};
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));

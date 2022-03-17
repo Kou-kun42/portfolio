@@ -1,0 +1,50 @@
+version: "3.3"
+
+networks:
+  traefik_proxy:
+    external: true
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - traefik_proxy
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${PASSWORD}
+    volumes:
+      - "${DATADIR}/portfolio/data/mongo:/data/db"
+
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portfolio
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - traefik_proxy
+    links:
+      - mongodb
+    environment:
+      - "MONGODB_URI=${MONGODB_URI}"
+      - "COOKIE=${COOKIE}"
+      - "PORT=${PORT}"
+      - "AUTH_SECRET=${AUTH_SECRET}"
+    volumes:
+      - "${DATADIR}/portfolio/data:/home/app/uploads"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portfolio.entrypoints=web"
+      - "traefik.http.routers.portfolio.rule=Host(`veer.${DOMAINNAME}`)"
+      - "traefik.http.routers.portfolio-secure.entrypoints=websecure"
+      - "traefik.http.routers.portfolio-secure.rule=Host(`veer.${DOMAINNAME}`)"
+      - "traefik.http.routers.portfolio-secure.tls=true"
+      - "traefik.http.routers.portfolio-secure.service=portfolio"
+      - "traefik.http.services.portfolio.loadbalancer.server.port=${PORT}"
+      - "traefik.docker.network=traefik_proxy"

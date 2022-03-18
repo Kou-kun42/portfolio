@@ -2,25 +2,24 @@
 
 ![Portfolio](https://raw.githubusercontent.com/Kou-kun42/portfolio-blog/main/screenshot.png)
 
-This is a personal portfolio/blog site that I want to use to showcase my projects and highlight my skills.
+This is a personal portfolio site that I created to showcase my projects and highlight my skills.
 
 
 ### Deployment
 
-This frontend is deployed here:
-http://vpandya.xyz/portfolio-blog/
+This project is fully deployed on my own home server using docker.  All of the changes and docker specific files can be found on the [docker branch](https://github.com/Kou-kun42/portfolio/tree/docker) of this project.  The live link to this site can be found here:
+https://veer.tuffy.dev/
 
-I'm still working on getting the backend up and running.  For now, if you want to check out the full features of this site, follow the local deployment steps below:
 
 ### Local Deployment
 
-To launch this app on your local environment, clone this repository and cd into it:
+To launch this app on your local environment make sure you have mongodb setup and the service running first, then clone this repository and cd into it:
 
 ```
 git clone https://github.com/Kou-kun42/portfolio-blog.git && cd portfolio-blog
 ```
 
-Assuming you have npm installed, run the next line to install all dependencies:
+Assuming you have npm and node installed, run the next line to install all dependencies:
 
 ```
 npm install
@@ -29,5 +28,5 @@ npm install
 Now run the server!:
 
 ```
-nodemon server.js
+node server.js
 ```

@@ -8,4 +8,4 @@ RUN npm install
 
 EXPOSE 443
 
-CMD npm start
+CMD nodemon server.js

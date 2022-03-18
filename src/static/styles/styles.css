@@ -3765,11 +3765,6 @@ fieldset:disabled .btn {
 .fade {
     transition: opacity 0.15s linear;
 }
-@media (prefers-reduced-motion: reduce) {
-    .fade {
-        transition: none;
-    }
-}
 .fade:not(.show) {
     opacity: 0;
 }
@@ -3783,20 +3778,10 @@ fieldset:disabled .btn {
     overflow: hidden;
     transition: height 0.35s ease;
 }
-@media (prefers-reduced-motion: reduce) {
-    .collapsing {
-        transition: none;
-    }
-}
 .collapsing.collapse-horizontal {
     width: 0;
     height: auto;
     transition: width 0.35s ease;
-}
-@media (prefers-reduced-motion: reduce) {
-    .collapsing.collapse-horizontal {
-        transition: none;
-    }
 }
 
 .dropup,
@@ -5809,11 +5794,6 @@ fieldset:disabled .btn {
 .modal.fade .modal-dialog {
     transition: transform 0.3s ease-out;
     transform: translate(0, -50px);
-}
-@media (prefers-reduced-motion: reduce) {
-    .modal.fade .modal-dialog {
-        transition: none;
-    }
 }
 .modal.show .modal-dialog {
     transform: none;

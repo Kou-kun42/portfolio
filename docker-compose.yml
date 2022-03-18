@@ -38,6 +38,7 @@ services:
       - "COOKIE=${COOKIE}"
       - "PORT=${PORT}"
       - "AUTH_SECRET=${AUTH_SECRET}"
+      - "NODE_ENV='production'"
     volumes:
       - "${DATADIR}/portfolio/data/uploads:/home/app/uploads"
     labels:

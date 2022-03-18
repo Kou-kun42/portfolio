@@ -31,6 +31,12 @@ router.get("/edit/:id", authJwt.verifyToken, async (req, res) => {
     res.render("articles/edit", { article: article });
 });
 
+router.get("/:id", async (req, res) => {
+    const article = await Article.findById(req.params.id);
+    const user = req.session.user;
+    res.render("articles/show", { article: article, user });
+});
+
 router.post(
     "/",
     upload.single("image"),

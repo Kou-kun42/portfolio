@@ -7,7 +7,7 @@
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         <meta name="author" content="Veer Pandya" />
-        <title>Veer Pandya's Portfolio</title>
+        <title><%= article.title %></title>
         <!-- Favicon-->
         <link rel="icon" href="/static/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -36,20 +36,20 @@
             id="mainNav"
         >
             <div class="container">
-                <a class="navbar-brand" href="#page-top">Veer Pandya</a>
+                <a class="navbar-brand" href="/#page-top">Veer Pandya</a>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-0 mx-lg-1">
                             <a
                                 class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="#portfolio"
+                                href="/#portfolio"
                                 >Projects</a
                             >
                         </li>
                         <li class="nav-item mx-0 mx-lg-1">
                             <a
                                 class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="#about"
+                                href="/#about"
                                 >About</a
                             >
                         </li>
@@ -66,108 +66,47 @@
                 </div>
             </div>
         </nav>
-        <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image-->
-                <img
-                    class="masthead-avatar mb-5 rounded-circle"
-                    src="/static/img/Veer.jpg"
-                    alt="Veer"
-                />
-                <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">
-                    Veer Pandya
-                </h1>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">
-                    Software Engineer - Data Scientist - Electronics Enthusiast
-                </p>
-            </div>
-        </header>
-        <section class="page-section portfolio" id="portfolio">
+        <section class="page-section my-4">
             <div class="container">
-                <h2
-                    class="page-section-heading text-center text-uppercase text-secondary mb-0"
-                >
-                    Projects
-                </h2>
-                <% if (user) { %>
-                <a href="/articles/new" class="btn btn-success">New</a>
-                <% } %>
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="divider-custom-line"></div>
-                </div>
                 <div class="row justify-content-center">
-                    <% articles.forEach(article => { %>
-
-                    <div class="col-md-6 col-lg-4 mb-5">
-                        <a href="/articles/<%= article.id %>">
-                            <div
-                                class="portfolio-item mx-auto"
-                                style="width: 20rem; height: auto"
-                            >
-                                <div
-                                    class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"
-                                >
-                                    <div
-                                        class="portfolio-item-caption-content text-center text-white"
-                                    >
-                                        <i class="fas fa-plus fa-3x"></i>
-                                    </div>
-                                </div>
-
-                                <img
-                                    class="img-fluid"
-                                    src="<%= article.image.filename %>"
-                                    alt="<%= article.title %>"
-                                />
+                    <div class="col-md-8 mx-auto">
+                        <!-- Portfolio Modal - Title-->
+                        <h2
+                            class="page-section-heading text-center text-uppercase text-secondary mb-0"
+                        >
+                            <%= article.title %>
+                        </h2>
+                        <!-- Icon Divider-->
+                        <div class="divider-custom">
+                            <div class="divider-custom-line"></div>
+                            <div class="divider-custom-icon">
+                                <i class="fas fa-star"></i>
                             </div>
-                        </a>
+                            <div class="divider-custom-line"></div>
+                        </div>
+                        <div class="w-50 mx-auto">
+                            <!-- Portfolio Modal - Image-->
+                            <img
+                                src="/<%= article.image.filename %>"
+                                class="img-fluid text-center mb-0"
+                                style="max-height: 20rem; border-radius: 0.5rem"
+                                alt="<%= article.title %>"
+                            />
+                            <div class="w-50 mx-auto text-center">
+                                <!-- Portfolio Modal - Text-->
+                                <p class="mb-4"><%- article.html %></p>
+                            </div>
+                            <div class="w-50 mx-auto text-center">
+                                <% if (user) { %>
+                                <a
+                                    href="/articles/edit/<%= article.id %>"
+                                    class="btn btn-info"
+                                    >Edit</a
+                                >
+                                <% } %>
+                            </div>
+                        </div>
                     </div>
-
-                    <% }) %>
-                </div>
-            </div>
-        </section>
-        <!-- About Section-->
-        <section class="page-section bg-primary text-white mb-0" id="about">
-            <div class="container">
-                <!-- About Section Heading-->
-                <h2
-                    class="page-section-heading text-center text-uppercase text-white"
-                >
-                    About
-                </h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- About Section Content-->
-                <div class="mt-4 text-center">
-                    <p class="lead">
-                        Veer is a software engineer who loves designing and
-                        creating projects that fulfill a purpose. From a young
-                        age, he always showed interest in understanding how
-                        machines worked, and would utilize that knowledge to
-                        develop something new. Veer faces challenges with a
-                        smile, and puts his heart into everything he does.
-                    </p>
                 </div>
             </div>
         </section>

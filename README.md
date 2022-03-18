@@ -1,5 +1,9 @@
 # Personal Portfolio
 
+The live link to this site can be found here:
+
+https://veer.tuffy.dev/
+
 ![Portfolio](https://raw.githubusercontent.com/Kou-kun42/portfolio-blog/main/screenshot.png)
 
 This is a personal portfolio site that I created to showcase my projects and highlight my skills.
@@ -7,8 +11,7 @@ This is a personal portfolio site that I created to showcase my projects and hig
 
 ### Deployment
 
-This project is fully deployed on my own home server using docker.  All of the changes and docker specific files can be found on the [docker branch](https://github.com/Kou-kun42/portfolio/tree/docker) of this project.  The live link to this site can be found here:
-https://veer.tuffy.dev/
+This project is fully deployed on my own home server using docker.  All of the changes and docker specific files can be found on the [docker branch](https://github.com/Kou-kun42/portfolio/tree/docker) of this project.
 
 
 ### Local Deployment

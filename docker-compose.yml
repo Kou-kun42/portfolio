@@ -14,15 +14,17 @@ services:
     networks:
       - traefik_proxy
     environment:
+      MONGO_INITDB_DATABASE: portfolio
       MONGO_INITDB_ROOT_USERNAME: ${USER}
       MONGO_INITDB_ROOT_PASSWORD: ${PASSWORD}
     volumes:
-      - "${DATADIR}/portfolio/data/mongo:/data/db"
+      - "${DATADIR}/portfolio/data/db:/data/db"
 
   portfolio:
     build:
       context: .
       dockerfile: Dockerfile
+    image: portfolio
     container_name: portfolio
     restart: unless-stopped
     security_opt:
@@ -37,7 +39,7 @@ services:
       - "PORT=${PORT}"
       - "AUTH_SECRET=${AUTH_SECRET}"
     volumes:
-      - "${DATADIR}/portfolio/data:/home/app/uploads"
+      - "${DATADIR}/portfolio/data/uploads:/home/app/uploads"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.portfolio.entrypoints=web"

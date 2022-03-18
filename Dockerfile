@@ -8,4 +8,4 @@ RUN npm install
 
 EXPOSE 443
 
-CMD node start
+CMD node server.js

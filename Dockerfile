@@ -6,6 +6,8 @@ ADD src .
 
 RUN npm install
 
+RUN npm install -g nodemon
+
 EXPOSE 443
 
 CMD nodemon server.js

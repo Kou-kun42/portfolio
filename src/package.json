@@ -4,7 +4,7 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js"
+        "start": "NODE_DEBUG=cluster,net,http,fs,tls,module,timers node server.js"
     },
     "keywords": [],
     "author": "Veer Pandya",
